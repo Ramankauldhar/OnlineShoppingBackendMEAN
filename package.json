@@ -1,0 +1,21 @@
+{
+  "name": "onlineshoppingapp",
+  "version": "1.0.0",
+  "description": "Online Shopping App ( MEAN Stack)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "MongoDb",
+    "Express",
+    "Angular",
+    "and",
+    "Node.js"
+  ],
+  "author": "Ramandeep",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
