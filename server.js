@@ -7,14 +7,18 @@ const bodyParser = require("body-parser");
 const app = express();
 app.use("/uploads", express.static("uploads"));
 // Connect to MongoDB
+mongoose.set("strictQuery", false);
 
-mongoose.connect("mongodb://localhost:27017/mydatabase", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-console.log("DB connected");
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
+main().catch((err) => console.log(err));
+
+async function main() {
+  await mongoose.connect(
+    "mongodb+srv://raman:Raman@cluster0.mugsatz.mongodb.net/ShoppingDB?retryWrites=true&w=majority"
+  );
+
+  // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
+  console.log("Mongo DB connected");
+}
 
 // Set up Multer for handling file uploads
 const storage = multer.diskStorage({
@@ -95,5 +99,5 @@ const port = 9090;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static("uploads"));
